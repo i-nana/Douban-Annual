@@ -1,0 +1,72 @@
+body,h1,h3,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,iframe,figure {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 400 14px/1.5 "Helvetical Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    color: #454545;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button,input {
+    font-family: inherit;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+*:focus,input:focus {
+    outline: none;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+    line-height: 2;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:hover {
+    color: #009688;
+}
+
+hr {
+    margin-top: 14px;
+    margin-bottom: 14px;
+    background: none;
+    color: transparent;
+    height: 0;
+    border: none;
+    border-top: 1px solid #eef;
+}
+
+.clear:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.hide {
+    display: none;
+}
