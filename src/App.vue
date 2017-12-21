@@ -1,49 +1,51 @@
 <template>
-  <div id="app" class="swiper-container">
-  <div class="swiper-wrapper">
-    <!-- <div class="swiper-slide home">
-      <div class="content">
-      </div>
-    </div> -->
-    <div class="swiper-slide" :style="'background-image: url(../static/images/' + data[0].bg + ');'">
-      <div class="content">
-        <div class="main">
-          <div class="pull-left">
-            
-          </div>
+<div id="app">
+  <header>
+    <div class="header-content clear">
+      <a href="javascript:void(0);" class="logo">
+        <img src="./assets/images/logo.png" alt="豆瓣" class="logo-icon">
+        豆瓣
+      </a>
+    </div>
+  </header>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <!-- <div class="swiper-slide home">
+        <div class="content">
         </div>
-        <!-- <ul class="list">
-          <li v-for="(item, index) in data" :key="index">
+      </div> -->
+      <div class="swiper-slide" :style="'background-image: url(../static/images/' + active.bg + ');'">
+        <div class="barrage" id="barrage"></div>
+        <ul class="list">
+          <li v-for="(item, index) in data" :key="index" @click="changeActive($event, index)">
             <div class="poster">
               <img class="poster-img" :src="'../static/images/' + item.poster">
             </div>
           </li>
-        </ul> -->
-        <div class="barrage" id="barrage">
-
-        </div>
-      </div>
-
+        </ul>
     </div>
   </div>
+</div>
 </div>
 </template>
 
 <script>
-import "./assets/css/style.css"
-import Swiper from  "swiper";
+import "./assets/css/style.css";
+import Swiper from "swiper";
 import "./assets/swiper/swiper.css";
-import data from "./assets/json/tv.json"
+import data from "./assets/json/tv.json";
 export default {
   name: "app",
   data() {
     return {
       data: data,
-      rowWidthArr: new Array(10).fill(0)
-    }
+      rowWidthArr: new Array(10).fill(0),
+      active: data[0],
+      colors: ['#fff', '#fff', '#009688', '#f44336', '#fff', '#2196f3']
+    };
   },
   mounted() {
-   this.initSwiper();
+    this.initSwiper();
     this.barrage();
   },
   methods: {
@@ -56,43 +58,50 @@ export default {
       });
     },
     barrage() {
-      let barrageList =  ["美人鱼无感。。", "我觉得星爷的美人鱼挺好的啊", "疯狂动物城 美人鱼 你的名字 湄公河行动 美国队长3 神奇动物在哪里", "为什么动物城不算评分最高的呢？", "卡顿了。。", "就魔兽没看了", "1246", "好棒！！！最喜欢的片子！！", "1 2 3 4 5 6 7 9 10", "美人鱼呵呵", "我去，居然有两部没看过", "除了《你的名字》都去影院看了诶", "那个爱宠的呢 这么萌居然没有", "动物一骑绝尘哈哈哈", "美人鱼真的不行", "疯狂动物城我居然在电影院看了三遍！！！！！！", "天启和魔兽分都太高了", "好想回到疯狂动物城那个时间如果一切可以重来", "年度最佳之一", "zootopia当之无愧", "看过8部", "动物城", "看到大鱼的分还不如美人鱼我就放心了", "讲个笑话：2016中国票房冠军：美人鱼", "看了三部，动物城，七月，魔兽", "3部动画片，1部喜剧，1部青春爱情片，5部动作片，其中2部超级英雄，1部游戏改编，看来还是大片受院线欢迎。4部国产，还不到一半。", "年初看了疯狂动物城 哈哈哈", "原来《疯狂动物城》不算在外语片评选范围内，喷了。", "我跟豆瓣三觀不合", "7部", "疯狂动物城最爱了", "这是咋评的？", "除了都看了", "除了你的名字都看了", "美人鱼很烂好吧", "只看了两部==", "大鱼海棠，美人鱼，呵呵呵", "大鱼海棠也能上", "永远善良勇敢，永远出乎意料", "魔兽居然只有第十 。", "最受关注是什么意思啊，是指看得人数排序么？", "继疯狂原始人之后最爱的动画，正能", "感谢单身，我看了全部……", "最受关注，应该是标记想看的人比较多", "大鱼海棠是个坑啊，唯一没去看的", "美人鱼美人鱼救命啊", "基本都看过2333333", "全部看过耶", "疯狂动物成", "感谢谈恋爱，我看了全部", "不是按分评的么低于7分两个是什么鬼。。。", "6部", "疯狂动物城实至名归", "名副其实", "那就是一个都市童话故事而已，一点都不现实...", "里面有两个特别不待见的低分片=，=", "大鱼垃圾了", "大鱼海棠是什么鬼？美人鱼是什么鬼？", "美人鱼和大鱼海棠……居然都在……", "美人鱼？？？？", "美人鱼是个什么鬼", "为什么没有算在最高评分外语电影里？", "豆瓣最棒！", "最受关注的只有第一个可以看。成功率真TM低！", "今年评分最高的难道不是这个？8.8比9.2高吗？", "9/10", "我居然全看过了", "9排10前面真的好吗", "疯狂动物城 美人鱼 湄公河 美队", "疯狂动物城剧情虽然是经典式的，看到后半段基本能猜出来，但是故事讲得很好", "美人鱼居然第二受关注，粉丝的钱有这么好挣吗", "有美人鱼没毛病, 说的是最受关注.", "只看过5部！最受关注不是很值得看。。", "居然只差神奇动物没有看 上映时候是最念叨的", "看了7部", "两部没看hh", "盗墓笔记", "看过五分三", "当之无愧", "我到现在也不懂 疯狂动物城好在哪里", "美人鱼？？？", "4部", "疯狂动物城妥妥的", "美人鱼", "有两部国产的没看", "全部看过  厉害了我", "你的名字没看过，不过动物城完美超过其他各个作品", "这大白条弹幕把重要的都遮住了。。", "我觉得美国队长才是好玩的电影啊", "美人鱼？？？", "美人鱼票房啊", "第一第二都是动画片", "吗", "大鱼海棠好失望", "看了7/10", "感谢豆瓣挺过这一关。豆瓣最棒！", "动物乌托邦一骑绝尘", "这个是按评论数量排的吗？", "美人鱼乱入是怎么回事！！？？", "好几部都还看"];
-     var i = 0;
-     let timer = setInterval(() => {
-       let min = Math.min(...this.rowWidthArr);
-       let row = this.rowWidthArr.indexOf(min);
-       if(min >= 1000) {
-         this.rowWidthArr = this.rowWidthArr.map((v) => { return v - 1000 });
-       }
-       this.initBarrageItem(barrageList[i], row);
-       i++;
-       if(i === barrageList.length) {
-        //  clearInterval(timer);
-        i = 0;
-       }
-     }, 500);
+      let barrageList =
+        "美人鱼大烂片&哈哈哈哈哈笑死我了&十部全中 盆盆盆&动物一骑绝尘哈哈哈&美人鱼6.9为啥在第二&疯狂动物城剧情虽然是经典式的，看到后半段基本能猜出来，但是故事讲得很好&这十部看了七部&1、2、3、4、5、8、9&最受关注的只有第一个可以看。成功率真TM低！&美人鱼？？？？&天启和魔兽分都太高了&最受关注不等于最好，这是按评论人数排的别搞错了&美人鱼票房啊&看了三部，动物城，七月，魔兽&这个是按评论数量排的吗？&吗&除了你的名字都看了&最受关注是什么意思啊，是指看得人数排序么？&6/10&美人鱼我是不服的&美人鱼跟大鱼海棠或成最大赢家&动物城吹在此&好喜欢&给钱了是吧&nimabi美人鱼 6.9排第二？？？？？？？？？？？？？？？？？？？、&美人鱼？？？&TEST&全部都看过~&看了7部&这个除了你的名字都看看过了&3部动画片，1部喜剧，1部青春爱情片，5部动作片，其中2部超级英雄，1部游戏改编，看来还是大片受院线欢迎。4部国产，还不到一半。&看了1 2 3 4  10&只有你的名字还没看了。。2016最后一天我要看掉你！！！&有意思我只没看过最后一部&疯狂动物城评分这么高&疯狂动物城刷了两遍&为什么没有算在最高评分外语电影里？&都看过。。。。。。&看了123579六部~&你个狡猾的狐狸&大鱼海棠是个坑啊，唯一没去看的&美人鱼真的不行&感谢豆瓣挺过这一关。豆瓣最棒！&美人鱼？excuse  me???&这大白条弹幕把重要的都遮住了。。&这是咋评的？&神奇动物在哪里的分怕是略高了点&1246&美人鱼？？？&公允&动画片另外归类吧，上面的最佳华语最佳外语都是指剧情片&讲个笑话：2016中国票房冠军：美人鱼&除了《你的名字》都去影院看了诶&我跟豆瓣三觀不合&求这张图片&除了湄公河和大鱼海棠没有看。&今年评分最高的难道不是这个？8.8比9.2高吗？&疯狂动物城实至名归&为什么动物城不算评分最高的呢？&大鱼海棠，美人鱼，呵呵呵&有两部国产的没看&美人鱼的确蛮不错的！&zootopia当之无愧&好想回到疯狂动物城那个时间如果一切可以重来&你的名字。大赞！！！！！&大鱼海棠也能上&当之无愧&我去，居然有两部没看过&疯狂动物城2刷&美人鱼无感。。&看了6部&里面有两个特别不待见的低分片=，=&4部&卡顿了。。&大鱼海棠不配&9排10前面真的好吗&美人鱼是个什么鬼&看了7/10&看过8部&原来《疯狂动物城》不算在外语片评选范围内，喷了。&7部&这样也要喷？键盘侠？？？动物城外语片这个&《疯狂动物城》，我居然看了，还不错，喜欢树懒&美人鱼的评分什么情况？&有美人鱼没毛病, 说的是最受关注.&天啊，这也是一片灾难啊，那么多实在是不怎么样的电影啊&美人鱼很烂好吧&盗墓笔记&美人鱼年度烂片没得跑&我爱的尼克来了&1 2 5 7 9 10&感谢谈恋爱，我看了全部&看了6部&寒战2 去哪里了&大家 晚上好&动物城实至名归&你的名字 疯狂动物城 美国队长 美人鱼&看到大鱼的分还不如美人鱼我就放心了&我广大wower竟然才够第十？&你的名字&5498488888888888888888888888888888888888888888888888&顶一发罗曼蒂克消亡史&驴得水哪里好看了？连电影都不是&只看过5，呵呵呵呵呵&10部看了6&还是柜子来了经典&湄公河行动绝*应该第一啊&哈&保卫豆瓣&我也觉得百鸟不该在上面&完蛋&11111&还有后来的&这评分最高榜单就像畅销书一样，是大家都喜欢看的。很好&也只有这几部能拿的出手了&1、2、4、8&湄公河让人失望 被高估的影片&湄公河怎么那么高&前三比较同意  后面的没怎么看过&看过6部，其中5部在电影院。&不是驴得水要黑马 而是国内哗众取宠的电影太多&啊&看了六部，算及格了&最爱路边野餐&往下走吧&1、2、4真的是虚高&....&人性&驴得水被高估，除了烂片太多，显然也是因为它并不高明的黑化式批判&湄公河行动还是不错的，但换成外国人的话，分数只能降低&踏雪寻梅给高&3&百鸟朝凤第4，情怀真是值钱啊。&驴得水排第一。。。。&追凶者也明明比较屌！！&最后悔的就是没去看驴得水啊~~~~~&国产片榜单漏了喊山&七月与安生？？？？？&驴得水？&歌曲好听啊&看了五部&再往后的zly&驴得水，要不是 有人一起，我都要中途李长乐&呵呵&无论被批与否 真性情才是豆瓣  如果因为被批就认怂  那就不是豆瓣了&今年真的没啥好片啊&《驴得水》连电影都不是，一部戏剧录像竟然是第一名。悲哉&驴得水电影感真的太少了，第一真不配！&真美好 好喜欢驴得水&怎么在七月与安生后面呢&百鸟朝凤这种水平也配&我觉得驴得水配不上这个&罗曼蒂克应该在第一位，真可惜档期没调好。&树大招风不是第一不服啊&我是来舔任素汐的～&厉害了&驴得水实至名归&就着city of&特地回来听BGM&我去正好iTunes在放city of stars&和我预想的不太一样啊&这两天都给他看完&你&都看过&艾玛BGM一上来就是lalaland&驴得水 湄公河&这都是些啥呀~~~~果然不靠谱&7K的投票也能作为参考么&驴得水 是一部悲剧&哇哦 city of stars~&这种电影居然评分最高  证明实在没有电影了&只看两部&1 2 4 都虚高了吧。。。8分啊。。&驴得水太让人眼瞎了，名不符实啊&这些能够进十佳的顶多也就是3部，其他也配？！&非常满意 今晚放假了 开始补&一个人占领弹幕真爽&七月与安生或许可以更高&只有5没看过了&驴得水实至名归&驴得水真心牛&七月与安生&也做了计划 按照它去执行&但是这首歌&谁能告诉我怎么切换到第二部&还有弹幕？？&欣赏BGM&看了7部&湄公河排第二我也真是没看懂&支持&哇塞，我看了两部&我认为前三分别是：路边野餐、我不是潘金莲、驴得水&前十看了三部，也是今年看的仅有的国产片。&树大招风不至于吧&坚定地乐观地、&给豆瓣比心&看了前两个&看了5部&看过一半 基本都是去电影院看的&就前看过一部，湄公河的评价似乎太高了点！";
+      barrageList = barrageList.split("&");
+      var i = 0;
+      let timer = setInterval(() => {
+        let min = Math.min(...this.rowWidthArr);
+        let row = this.rowWidthArr.indexOf(min);
+        if (min >= 1000) {
+          this.rowWidthArr = this.rowWidthArr.map(v => {
+            return v - 1000;
+          });
+        }
+        this.initBarrageItem(barrageList[i], row);
+        i++;
+        if (i === barrageList.length) {
+          //  clearInterval(timer);
+          i = 0;
+        }
+      }, 500);
     },
     initBarrageItem(data, index) {
-      let $barrage = this.$el.querySelector('#barrage');
+      let $barrage = this.$el.querySelector("#barrage");
       let rowHeight = 40;
-      let item = document.createElement('p');
-      let speed =160 + (Math.random() - 0.5) * 20;
+      let item = document.createElement("p");
+      let speed = 100 + (Math.random() - 0.5) * 20;
       let bodyWidth = document.body.clientWidth;
       item.innerText = data;
       $barrage.appendChild(item);
 
       let itemWidth = parseInt(item.getBoundingClientRect().width);
-      let t = parseInt(( itemWidth + bodyWidth ) / speed);
+      let t = (itemWidth + bodyWidth) / speed;
       this.rowWidthArr[index] = this.rowWidthArr[index] + itemWidth;
-      item.style.left = '100%';
-      item.style.top = index * rowHeight + 'px';
-      item.style.transition = 'left ' + t+'s linear';
-      item.style.left = item.getBoundingClientRect().width * -1 + 'px';
+      item.style.left = "100%";
+      item.style.color = this.colors[parseInt(this.colors.length * Math.random())];
+      item.style.top = index * rowHeight + "px";
+      item.style.transition = "left " + t + "s linear";
+      item.style.left = item.getBoundingClientRect().width * -1 + "px";
       setTimeout(function() {
-        item.remove();
-      }, t * 1000)
-
+        // item.remove();
+      }, parseInt(t * 1000));
     },
+    changeActive(e, index) {
+      this.active = this.data[index];
+    }
   }
 };
 </script>
@@ -103,6 +112,32 @@ body {
   position: relative;
   height: 100%;
 }
+
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  height: 100px;
+  background: url(./assets/images/head_top_mask.png) bottom repeat-x;
+  .header-content {
+    margin: 8px 20px;
+    line-height: 28px;
+  }
+  .logo {
+    float: left;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    img {
+      float: left;
+      margin-top: 5px;
+      margin-right: 6px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
 .swiper-container {
   position: absolute;
   width: 100%;
@@ -134,11 +169,17 @@ body {
 }
 .list {
   white-space: nowrap;
+  padding-left: 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 100px;
+  text-align: center;
   li {
     display: inline-block;
     list-style: none;
-    margin: 0 10px;
-    box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, .3);
+    margin: 0 0 0 10px;
+    box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
   }
 }
 .poster-img {
@@ -152,7 +193,7 @@ body {
   top: 50px;
   bottom: 50px;
   left: 0;
-  
+
   p {
     position: absolute;
     left: 100%;
@@ -162,7 +203,7 @@ body {
     color: #fff;
     white-space: nowrap;
     border-radius: 13px;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
     // transition: left 100ms linear;
   }
 }

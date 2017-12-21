@@ -1,9 +1,17 @@
 [{
-    "name": "驴得水",
-    "bg":  "p1605.jpg",
-    "poster": "p2393044761.jpg"
+    "name": "大鱼海棠",
+    "bg":  "pc_dyht.jpg",
+    "poster": "m_dyht.jpg"
 }, {
-    "name": "楚乔传",
-    "bg": "pc02.jpg",
-    "poster": "m02.jpg"
+    "name": "你的名字。",
+    "bg": "pc_ndmz.jpg",
+    "poster": "m_ndmz.jpg"
+}, {
+    "name": "七月与安生",
+    "bg": "pc_qyyas.jpg",
+    "poster": "m_qyyas.jpg"
+}, {
+    "name": "疯狂动物城",
+    "bg": "pc_fkdwc.jpg",
+    "poster": "m_fkdwc.jpg"
 }]
